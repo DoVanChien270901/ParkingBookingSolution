@@ -4,14 +4,15 @@
  */
 package fpt.aptech.ParkingBookingApi.InterfaceServices;
 
-import fpt.aptech.ParkingBookingApi.Entities.Account;
-import java.util.List;
+import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.QrCodeReq;
+import fpt.aptech.ParkingBookingApi.Entities.Qrcode;
 
 /**
  *
  * @author CHIEN
  */
-public interface IAccount {
-    public List<Account> getAccount();
-    public Account getAccountById(String id);
+public interface IQrCode {
+    public Boolean create(QrCodeReq qrCodeRequest);
+    public Boolean delete(QrCodeReq qrCodeRequest);
+    public Boolean edit(QrCodeReq qrCodeRequest);
 }
