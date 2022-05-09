@@ -73,29 +73,49 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/list-users", method = RequestMethod.GET)
-    public PageProfileRes listusers(@RequestParam("page") int page, @RequestParam("size") int size) {
-        
-        Page<Profile> pageprofile = profileService.findAll(page, size);
+    public ResponseEntity<?> listusers(@RequestParam("page") int page, @RequestParam("size") int size) {
+        try {
+            Page<Profile> pageprofile = profileService.findAll(page, size);
         List<ProfileRes> listpro = mapper.mapList(pageprofile.getContent(), ProfileRes.class);
         PageProfileRes pageProfileRes = new PageProfileRes();
         pageProfileRes.setListProfile(listpro);
         pageProfileRes.setCurrentPage(pageprofile.getPageable().getPageNumber());
         pageProfileRes.setSize(pageprofile.getSize());
         pageProfileRes.setTotalPages(pageprofile.getTotalPages());
-        return pageProfileRes;
+        return new ResponseEntity<PageProfileRes>(pageProfileRes, HttpStatus.OK);
+        } catch (Exception e) {
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ProfileRes user(@RequestBody TokenReq tokenRequest) {
-        String username = jwtTokenUtil.extracUsername(tokenRequest.getToken());
-        Profile profile = profileService.getByUserName(username);
-        ProfileRes pres = mapper.map(profile, ProfileRes.class);
-        return pres;
+    public ResponseEntity<?> getUserByToken(@RequestBody TokenReq tokenRequest) {
+        try {
+            String username = jwtTokenUtil.extracUsername(tokenRequest.getToken());
+            Profile profile = profileService.getByUserName(username);
+            ProfileRes pres = mapper.map(profile, ProfileRes.class);
+            return new ResponseEntity<ProfileRes>(pres, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    //test
-    @RequestMapping(value = "/list-accounts", method = RequestMethod.GET)
-    public List<Account> listaccounts() {
-        return userDetailsService.findAll();
+//    //test
+//    @RequestMapping(value = "/list-accounts", method = RequestMethod.GET)
+//    public List<Account> getListUser() {
+//        return userDetailsService.findAll();
+//    }
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    public ResponseEntity editUser(@RequestBody EditProfileReq editProfileReq) {
+        try {
+            String username = jwtTokenUtil.extracUsername(editProfileReq.getToken());
+            Profile profile = mapper.map(editProfileReq, Profile.class);
+            profile.getUsername().setUsername(username);
+            profileService.edit(profile);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e,HttpStatus.BAD_REQUEST);
+        }
     }
+
 }

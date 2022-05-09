@@ -5,6 +5,7 @@
 package fpt.aptech.ParkingBookingApi.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
@@ -49,7 +50,8 @@ public class Account implements Serializable {
     @Size(max = 20)
     @Column(name = "role")
     private String role;
-    @OneToOne(mappedBy = "username", fetch = FetchType.LAZY)
+    
+    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
     private Profile profile;
 
     public Account() {
