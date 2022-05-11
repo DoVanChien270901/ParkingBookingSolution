@@ -81,19 +81,19 @@ public class AccountController {
             pageProfileRes.setCurrentPage(pageprofile.getPageable().getPageNumber());
             pageProfileRes.setSize(pageprofile.getSize());
             pageProfileRes.setTotalPages(pageprofile.getTotalPages());
-            return new ResponseEntity<PageProfileRes>(pageProfileRes, HttpStatus.OK);
+            return new ResponseEntity(pageProfileRes, HttpStatus.OK);
         } catch (Exception e) {
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity<?> getUserByToken(@RequestBody TokenReq tokenRequest) {
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserByToken(@RequestHeader("Authorization") String token) {
         try {
-            String username = jwtTokenUtil.extracUsername(tokenRequest.getToken());
+            String username = jwtTokenUtil.extracUsername(token.substring(7));
             Profile profile = profileService.getByUserName(username);
             ProfileRes pres = mapper.map(profile, ProfileRes.class);
-            return new ResponseEntity<ProfileRes>(pres, HttpStatus.OK);
+            return new ResponseEntity(pres, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
@@ -105,9 +105,9 @@ public class AccountController {
 //        return userDetailsService.findAll();
 //    }
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
-    public ResponseEntity editUser(@RequestBody EditProfileReq editProfileReq) {
+    public ResponseEntity editUser(@RequestBody EditProfileReq editProfileReq, @RequestHeader("Authorization") String token) {
         try {
-            String username = jwtTokenUtil.extracUsername(editProfileReq.getToken());
+            String username = jwtTokenUtil.extracUsername(token.substring(7));
             Profile profile = mapper.map(editProfileReq, Profile.class);
             profile.setUsername(username);
             profileService.edit(profile);

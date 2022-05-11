@@ -11,7 +11,6 @@ import java.util.Date;
  * @author vantu
  */
 public class EditProfileReq {
-    private String token;
     private String role;
     private Integer identitycard;
     private String fullname;
@@ -78,15 +77,4 @@ public class EditProfileReq {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-    
-    
-
 }
