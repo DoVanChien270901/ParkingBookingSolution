@@ -4,7 +4,7 @@
  */
 package fpt.aptech.ParkingBookingApi.InterfaceServices;
 
-import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.TokenReq;
+import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.*;
 import fpt.aptech.ParkingBookingApi.Entities.Profile;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -17,4 +17,5 @@ public interface IProfile {
     Page<Profile> findAll(int page, int size);
     Profile getByUserName(String username);
     void create(Profile profile);
+    boolean edit(Profile profile);
 }

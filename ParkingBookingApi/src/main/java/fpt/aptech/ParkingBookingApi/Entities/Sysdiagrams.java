@@ -21,20 +21,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "sysdiagrams")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sysdiagrams.findAll", query = "SELECT s FROM Sysdiagrams s"),
+    @NamedQuery(name = "Sysdiagrams.findByDiagramId", query = "SELECT s FROM Sysdiagrams s WHERE s.diagramId = :diagramId"),
     @NamedQuery(name = "Sysdiagrams.findByName", query = "SELECT s FROM Sysdiagrams s WHERE s.name = :name"),
     @NamedQuery(name = "Sysdiagrams.findByPrincipalId", query = "SELECT s FROM Sysdiagrams s WHERE s.principalId = :principalId"),
-    @NamedQuery(name = "Sysdiagrams.findByDiagramId", query = "SELECT s FROM Sysdiagrams s WHERE s.diagramId = :diagramId"),
     @NamedQuery(name = "Sysdiagrams.findByVersion", query = "SELECT s FROM Sysdiagrams s WHERE s.version = :version")})
 public class Sysdiagrams implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "diagram_id")
+    private Integer diagramId;
+    @Lob
+    @Column(name = "definition")
+    private byte[] definition;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
@@ -44,16 +52,8 @@ public class Sysdiagrams implements Serializable {
     @NotNull
     @Column(name = "principal_id")
     private int principalId;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "diagram_id")
-    private Integer diagramId;
     @Column(name = "version")
     private Integer version;
-    @Lob
-    @Column(name = "definition")
-    private byte[] definition;
 
     public Sysdiagrams() {
     }
@@ -66,6 +66,22 @@ public class Sysdiagrams implements Serializable {
         this.diagramId = diagramId;
         this.name = name;
         this.principalId = principalId;
+    }
+
+    public Integer getDiagramId() {
+        return diagramId;
+    }
+
+    public void setDiagramId(Integer diagramId) {
+        this.diagramId = diagramId;
+    }
+
+    public byte[] getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(byte[] definition) {
+        this.definition = definition;
     }
 
     public String getName() {
@@ -84,28 +100,12 @@ public class Sysdiagrams implements Serializable {
         this.principalId = principalId;
     }
 
-    public Integer getDiagramId() {
-        return diagramId;
-    }
-
-    public void setDiagramId(Integer diagramId) {
-        this.diagramId = diagramId;
-    }
-
     public Integer getVersion() {
         return version;
     }
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public byte[] getDefinition() {
-        return definition;
-    }
-
-    public void setDefinition(byte[] definition) {
-        this.definition = definition;
     }
 
     @Override
@@ -130,7 +130,7 @@ public class Sysdiagrams implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Sysdiagrams[ diagramId=" + diagramId + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Sysdiagrams[ diagramId=" + diagramId + " ]";
     }
     
 }

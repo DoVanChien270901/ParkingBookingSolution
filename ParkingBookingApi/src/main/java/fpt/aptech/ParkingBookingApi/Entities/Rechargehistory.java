@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "rechargehistory")
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Rechargehistory.findAll", query = "SELECT r FROM Rechargehistory r"),
     @NamedQuery(name = "Rechargehistory.findById", query = "SELECT r FROM Rechargehistory r WHERE r.id = :id"),
-    @NamedQuery(name = "Rechargehistory.findByDatetime", query = "SELECT r FROM Rechargehistory r WHERE r.datetime = :datetime"),
-    @NamedQuery(name = "Rechargehistory.findByAmount", query = "SELECT r FROM Rechargehistory r WHERE r.amount = :amount")})
+    @NamedQuery(name = "Rechargehistory.findByAmount", query = "SELECT r FROM Rechargehistory r WHERE r.amount = :amount"),
+    @NamedQuery(name = "Rechargehistory.findByDatetime", query = "SELECT r FROM Rechargehistory r WHERE r.datetime = :datetime")})
 public class Rechargehistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,15 +41,15 @@ public class Rechargehistory implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datetime;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "amount")
     private Double amount;
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
     @JoinColumn(name = "accountid", referencedColumnName = "username")
     @ManyToOne(optional = false)
-    private Account accountid;
+    private Profile accountid;
 
     public Rechargehistory() {
     }
@@ -66,14 +66,6 @@ public class Rechargehistory implements Serializable {
         this.id = id;
     }
 
-    public Date getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -82,11 +74,19 @@ public class Rechargehistory implements Serializable {
         this.amount = amount;
     }
 
-    public Account getAccountid() {
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public Profile getAccountid() {
         return accountid;
     }
 
-    public void setAccountid(Account accountid) {
+    public void setAccountid(Profile accountid) {
         this.accountid = accountid;
     }
 
@@ -112,7 +112,7 @@ public class Rechargehistory implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Rechargehistory[ id=" + id + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Rechargehistory[ id=" + id + " ]";
     }
     
 }

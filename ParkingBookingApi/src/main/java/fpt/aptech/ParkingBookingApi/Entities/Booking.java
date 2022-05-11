@@ -4,7 +4,6 @@
  */
 package fpt.aptech.ParkingBookingApi.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "booking")
@@ -33,8 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Booking.findAll", query = "SELECT b FROM Booking b"),
     @NamedQuery(name = "Booking.findById", query = "SELECT b FROM Booking b WHERE b.id = :id"),
-    @NamedQuery(name = "Booking.findByStarttime", query = "SELECT b FROM Booking b WHERE b.starttime = :starttime"),
     @NamedQuery(name = "Booking.findByEndtime", query = "SELECT b FROM Booking b WHERE b.endtime = :endtime"),
+    @NamedQuery(name = "Booking.findByStarttime", query = "SELECT b FROM Booking b WHERE b.starttime = :starttime"),
     @NamedQuery(name = "Booking.findByStatus", query = "SELECT b FROM Booking b WHERE b.status = :status")})
 public class Booking implements Serializable {
 
@@ -44,21 +43,21 @@ public class Booking implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "starttime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date starttime;
     @Column(name = "endtime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endtime;
+    @Column(name = "starttime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date starttime;
     @Size(max = 20)
     @Column(name = "status")
     private String status;
-    @JoinColumn(name = "accountid", referencedColumnName = "username")
-    @ManyToOne(optional = false)
-    private Account accountid;
     @JoinColumn(name = "locationcode", referencedColumnName = "codelocation")
     @ManyToOne(optional = false)
     private Parkinglocation locationcode;
+    @JoinColumn(name = "accountid", referencedColumnName = "username")
+    @ManyToOne(optional = false)
+    private Profile accountid;
 
     public Booking() {
     }
@@ -75,20 +74,20 @@ public class Booking implements Serializable {
         this.id = id;
     }
 
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
     public Date getEndtime() {
         return endtime;
     }
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
     }
 
     public String getStatus() {
@@ -99,20 +98,20 @@ public class Booking implements Serializable {
         this.status = status;
     }
 
-    public Account getAccountid() {
-        return accountid;
-    }
-
-    public void setAccountid(Account accountid) {
-        this.accountid = accountid;
-    }
-
     public Parkinglocation getLocationcode() {
         return locationcode;
     }
 
     public void setLocationcode(Parkinglocation locationcode) {
         this.locationcode = locationcode;
+    }
+
+    public Profile getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Profile accountid) {
+        this.accountid = accountid;
     }
 
     @Override
@@ -137,7 +136,7 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Booking[ id=" + id + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Booking[ id=" + id + " ]";
     }
     
 }

@@ -4,7 +4,8 @@
  */
 package fpt.aptech.ParkingBookingApi.InterfaceServices;
 
-import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.QrCodeReq;
+import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.AddQrReq;
+import fpt.aptech.ParkingBookingApi.Dto.ModelResponse.QrCodeRes;
 import fpt.aptech.ParkingBookingApi.Entities.Qrcode;
 
 /**
@@ -12,7 +13,8 @@ import fpt.aptech.ParkingBookingApi.Entities.Qrcode;
  * @author CHIEN
  */
 public interface IQrCode {
-    public Boolean create(QrCodeReq qrCodeRequest);
-    public Boolean delete(QrCodeReq qrCodeRequest);
-    public Boolean edit(QrCodeReq qrCodeRequest);
+    void create(Qrcode qrcode);
+    Boolean delete(Qrcode qrcode);
+    Boolean edit(Qrcode qrcode);
+    QrCodeRes qrCodeRes(String accountid);
 }
