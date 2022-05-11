@@ -46,7 +46,7 @@ public class ProfileService implements IProfile {
 
     @Override
     public boolean edit(Profile profile) {
-        Profile oldProfile = profileRepository.getByUsername(profile.getUsername().getUsername());
+        Profile oldProfile = profileRepository.getByUsername(profile.getUsername());
         if (oldProfile != null) {
             profileRepository.save(profile);
             return true;

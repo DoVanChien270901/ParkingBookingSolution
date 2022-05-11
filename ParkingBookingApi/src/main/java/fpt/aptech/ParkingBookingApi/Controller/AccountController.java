@@ -62,27 +62,26 @@ public class AccountController {
         boolean result = userDetailsService.create(account);
         if (result == true) {
             Profile profile = mapper.map(registerRequest, Profile.class);
-            profile.setUsername(account);
             profileService.create(profile);
             final UserDetails userDetails = userDetailsService
                     .loadUserByUsername(registerRequest.getUsername());
             final String jwt = jwtTokenUtil.generrateToken(userDetails);
             return ResponseEntity.ok(jwt);
         }
-        return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "/list-users", method = RequestMethod.GET)
     public ResponseEntity<?> listusers(@RequestParam("page") int page, @RequestParam("size") int size) {
         try {
             Page<Profile> pageprofile = profileService.findAll(page, size);
-        List<ProfileRes> listpro = mapper.mapList(pageprofile.getContent(), ProfileRes.class);
-        PageProfileRes pageProfileRes = new PageProfileRes();
-        pageProfileRes.setListProfile(listpro);
-        pageProfileRes.setCurrentPage(pageprofile.getPageable().getPageNumber());
-        pageProfileRes.setSize(pageprofile.getSize());
-        pageProfileRes.setTotalPages(pageprofile.getTotalPages());
-        return new ResponseEntity<PageProfileRes>(pageProfileRes, HttpStatus.OK);
+            List<ProfileRes> listpro = mapper.mapList(pageprofile.getContent(), ProfileRes.class);
+            PageProfileRes pageProfileRes = new PageProfileRes();
+            pageProfileRes.setListProfile(listpro);
+            pageProfileRes.setCurrentPage(pageprofile.getPageable().getPageNumber());
+            pageProfileRes.setSize(pageprofile.getSize());
+            pageProfileRes.setTotalPages(pageprofile.getTotalPages());
+            return new ResponseEntity<PageProfileRes>(pageProfileRes, HttpStatus.OK);
         } catch (Exception e) {
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -96,7 +95,7 @@ public class AccountController {
             ProfileRes pres = mapper.map(profile, ProfileRes.class);
             return new ResponseEntity<ProfileRes>(pres, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -110,12 +109,11 @@ public class AccountController {
         try {
             String username = jwtTokenUtil.extracUsername(editProfileReq.getToken());
             Profile profile = mapper.map(editProfileReq, Profile.class);
-            profile.getUsername().setUsername(username);
+            profile.setUsername(username);
             profileService.edit(profile);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(e,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
         }
     }
-
 }

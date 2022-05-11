@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "vehicle")
@@ -47,7 +47,7 @@ public class Vehicle implements Serializable {
     private String type;
     @JoinColumn(name = "accountid", referencedColumnName = "username")
     @ManyToOne(optional = false)
-    private Account accountid;
+    private Profile accountid;
 
     public Vehicle() {
     }
@@ -80,11 +80,11 @@ public class Vehicle implements Serializable {
         this.type = type;
     }
 
-    public Account getAccountid() {
+    public Profile getAccountid() {
         return accountid;
     }
 
-    public void setAccountid(Account accountid) {
+    public void setAccountid(Profile accountid) {
         this.accountid = accountid;
     }
 
@@ -110,7 +110,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Vehicle[ listcenseplates=" + listcenseplates + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Vehicle[ listcenseplates=" + listcenseplates + " ]";
     }
     
 }

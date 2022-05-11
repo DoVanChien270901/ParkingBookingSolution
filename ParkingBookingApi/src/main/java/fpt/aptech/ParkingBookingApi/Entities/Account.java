@@ -4,15 +4,11 @@
  */
 package fpt.aptech.ParkingBookingApi.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,11 +17,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "account")
@@ -50,8 +45,7 @@ public class Account implements Serializable {
     @Size(max = 20)
     @Column(name = "role")
     private String role;
-    
-    @OneToOne(mappedBy = "username", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private Profile profile;
 
     public Account() {
@@ -85,12 +79,11 @@ public class Account implements Serializable {
         this.role = role;
     }
 
-    @XmlTransient
     public Profile getProfile() {
         return profile;
     }
 
-    public void setProfileCollection(Profile profile) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 
@@ -116,7 +109,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Account[ username=" + username + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Account[ username=" + username + " ]";
     }
     
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author CHIEN
  */
 public interface QrCodeRepository extends JpaRepository<Qrcode, Integer> {
-    @Query("select q from Qrcode q where q.id = :id")
-    @Override
-    Qrcode getById(@PathVariable("id") Integer id);
+    
+    @Query("SELECT q FROM Qrcode q WHERE q.accountid.username = :username")
+    Qrcode getByAccointId(@PathVariable("username") String username);
 }

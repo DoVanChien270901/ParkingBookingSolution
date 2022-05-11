@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "parkinglocation")
@@ -100,7 +100,7 @@ public class Parkinglocation implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Parkinglocation[ codelocation=" + codelocation + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Parkinglocation[ codelocation=" + codelocation + " ]";
     }
     
 }

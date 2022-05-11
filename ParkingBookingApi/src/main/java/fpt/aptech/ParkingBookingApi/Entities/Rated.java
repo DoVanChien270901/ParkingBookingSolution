@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "rated")
@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Rated.findAll", query = "SELECT r FROM Rated r"),
     @NamedQuery(name = "Rated.findById", query = "SELECT r FROM Rated r WHERE r.id = :id"),
-    @NamedQuery(name = "Rated.findByDatetime", query = "SELECT r FROM Rated r WHERE r.datetime = :datetime"),
     @NamedQuery(name = "Rated.findByContent", query = "SELECT r FROM Rated r WHERE r.content = :content"),
+    @NamedQuery(name = "Rated.findByDatetime", query = "SELECT r FROM Rated r WHERE r.datetime = :datetime"),
     @NamedQuery(name = "Rated.findByScore", query = "SELECT r FROM Rated r WHERE r.score = :score")})
 public class Rated implements Serializable {
 
@@ -43,17 +43,17 @@ public class Rated implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datetime;
     @Size(max = 250)
     @Column(name = "content")
     private String content;
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
     @Column(name = "score")
     private Integer score;
     @JoinColumn(name = "accountid", referencedColumnName = "username")
     @ManyToOne(optional = false)
-    private Account accountid;
+    private Profile accountid;
 
     public Rated() {
     }
@@ -70,20 +70,20 @@ public class Rated implements Serializable {
         this.id = id;
     }
 
-    public Date getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
-    }
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
     }
 
     public Integer getScore() {
@@ -94,11 +94,11 @@ public class Rated implements Serializable {
         this.score = score;
     }
 
-    public Account getAccountid() {
+    public Profile getAccountid() {
         return accountid;
     }
 
-    public void setAccountid(Account accountid) {
+    public void setAccountid(Profile accountid) {
         this.accountid = accountid;
     }
 
@@ -124,7 +124,7 @@ public class Rated implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Rated[ id=" + id + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Rated[ id=" + id + " ]";
     }
     
 }

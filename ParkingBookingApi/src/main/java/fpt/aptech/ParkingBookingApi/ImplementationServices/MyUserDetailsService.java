@@ -37,6 +37,7 @@ public class MyUserDetailsService implements UserDetailsService, IAccount {
     public boolean create(Account account){
      Account acc = accountRepository.getByUserName(account.getUsername());
             if (acc == null) {
+                account.setPassword(encryPassword(account.getPassword()));
                 accountRepository.save(account);
                 return true;
             }else return false;
@@ -53,7 +54,7 @@ public class MyUserDetailsService implements UserDetailsService, IAccount {
         return accountRepository.findAll();
     }
 
-    @Override
+        @Override
     public Account getAccountById(String id) {
         Account a = accountRepository.getByUserName(id);
         return a;

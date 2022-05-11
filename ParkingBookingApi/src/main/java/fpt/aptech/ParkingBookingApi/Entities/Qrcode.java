@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CHIEN
+ * @author vantu
  */
 @Entity
 @Table(name = "qrcode")
@@ -39,15 +39,14 @@ public class Qrcode implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 250)
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
     @Size(max = 25)
     @Column(name = "title")
     private String title;
     @JoinColumn(name = "accountid", referencedColumnName = "username")
     @ManyToOne(optional = false)
-    private Account accountid;
+    private Profile accountid;
 
     public Qrcode() {
     }
@@ -80,11 +79,11 @@ public class Qrcode implements Serializable {
         this.title = title;
     }
 
-    public Account getAccountid() {
+    public Profile getAccountid() {
         return accountid;
     }
 
-    public void setAccountid(Account accountid) {
+    public void setAccountid(Profile accountid) {
         this.accountid = accountid;
     }
 
@@ -110,7 +109,7 @@ public class Qrcode implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.aptech.ParkingBookingApi.Models.Qrcode[ id=" + id + " ]";
+        return "fpt.aptech.ParkingBookingApi.Entities.Qrcode[ id=" + id + " ]";
     }
     
 }
