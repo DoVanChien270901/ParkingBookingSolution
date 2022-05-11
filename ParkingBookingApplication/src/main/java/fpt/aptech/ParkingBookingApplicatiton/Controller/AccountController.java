@@ -35,7 +35,7 @@ public class AccountController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
-        model.addAttribute("authenticate", new AuthenticationRequest());
+    //  model.addAttribute("authenticate", new AuthenticationRequest());
         return "user/login";
     }
 
