@@ -66,7 +66,11 @@ public class AccountController {
             final UserDetails userDetails = userDetailsService
                     .loadUserByUsername(registerRequest.getUsername());
             final String jwt = jwtTokenUtil.generrateToken(userDetails);
-            return ResponseEntity.ok(jwt);
+            LoginRes res = new LoginRes();
+            res.setToken(jwt);
+            Object[] role = userDetails.getAuthorities().toArray();
+            res.setRole(Roles.valueOf(role[0].toString()));
+            return ResponseEntity.ok(res);
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }

@@ -8,15 +8,15 @@
     <title>Home</title>
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/elegant-font/code/style.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/form-elements.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/media-queries.css">
-    <link rel="stylesheet" href="assets/css/fix.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/elegant-font/code/style.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/form-elements.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/media-queries.css">
+    <link rel="stylesheet" href="../assets/css/fix.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -25,11 +25,11 @@
         <![endif]-->
 
     <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="assets/img/icon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/img/icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
 <body>
@@ -55,8 +55,8 @@
                     <li><a class="scroll-link" href="#what-we-do">Services</a></li>
                     <!-- <li><a class="scroll-link" href="#portfolio">Support</a></li> -->
                     <li><a class="scroll-link" href="#pricing-2">Blog</a></li>
-                    <li><a class="scroll-link" href="#about">Login</a></li>
-                    <li><a class="scroll-link outline-primary" href="#contact">Register</a></li>
+                    <li><a class="scroll-link" th:href="@{/user}">My Account</a></li>
+<!--                    <li><a class="scroll-link outline-primary" href="#contact">Register</a></li>-->
                 </ul>
             </div>
         </div>
@@ -129,16 +129,16 @@
                 </div>
                 <div class="col-sm-10 clients wow fadeInUp">
                     <a href="https://wrapbootstrap.com/theme/trilli-bi-fullscreen-landing-page-WB000X02N?ref=azmind" target="_blank" rel="nofollow">
-                        <img src="assets/img/clients/1.png" alt="" data-at2x="assets/img/clients/1.png">
+                        <img src="../assets/img/clients/1.png" alt="" data-at2x="assets/img/clients/1.png">
                     </a>
                     <a href="https://wrapbootstrap.com/theme/areta-agency-portfolio-template-WB0L5XF38?ref=azmind" target="_blank" rel="nofollow">
-                        <img src="assets/img/clients/2.png" alt="" data-at2x="assets/img/clients/2.png">
+                        <img src="../assets/img/clients/2.png" alt="" data-at2x="assets/img/clients/2.png">
                     </a>
                     <a href="https://wrapbootstrap.com/theme/seria-coming-soon-landing-page-WB05D4591?ref=azmind" target="_blank" rel="nofollow">
-                        <img src="assets/img/clients/3.png" alt="" data-at2x="assets/img/clients/3.png">
+                        <img src="../assets/img/clients/3.png" alt="" data-at2x="assets/img/clients/3.png">
                     </a>
                     <a href="https://wrapbootstrap.com/theme/jesis-responsive-app-landing-page-WB085528N?ref=azmind" target="_blank" rel="nofollow">
-                        <img src="assets/img/clients/4.png" alt="" data-at2x="assets/img/clients/4.png">
+                        <img src="../assets/img/clients/4.png" alt="" data-at2x="assets/img/clients/4.png">
                     </a>
                 </div>
             </div>
@@ -151,7 +151,7 @@
             <div class="row">
                 <div class="col-sm-6 block-2-box block-2-left block-2-media wow fadeInLeft">
                     <div class="block-2-img-container">
-                        <img src="assets/img/about/4.jpg" alt="" data-at2x="assets/img/about/4.jpg">
+                        <img src="../assets/img/about/4.jpg" alt="" data-at2x="../assets/img/about/4.jpg">
                         <div class="img-container-line line-1"></div>
                         <div class="img-container-line line-2"></div>
                         <div class="img-container-line line-3"></div>
@@ -207,7 +207,7 @@
                 </div>
                 <div class="col-sm-6 block-2-box block-2-right block-2-media wow fadeInUp">
                     <div class="block-2-img-container">
-                        <img src="assets/img/about/5.jpg" alt="" data-at2x="assets/img/about/5.jpg">
+                        <img src="../assets/img/about/5.jpg" alt="" data-at2x="../assets/img/about/5.jpg">
                         <div class="img-container-line line-1"></div>
                         <div class="img-container-line line-2"></div>
                         <div class="img-container-line line-3"></div>
@@ -264,7 +264,7 @@
             <div class="row">
                 <div class="col-sm-12 portfolio-masonry">
                     <div class="portfolio-box design">
-                        <img src="assets/img/portfolio/1.jpg" alt="" data-at2x="assets/img/portfolio/1.jpg">
+                        <img src="../assets/img/portfolio/1.jpg" alt="" data-at2x="../assets/img/portfolio/1.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Trilli Bi template</p>
@@ -272,7 +272,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box development">
-                        <img src="assets/img/portfolio/2.jpg" alt="" data-at2x="assets/img/portfolio/2.jpg">
+                        <img src="../assets/img/portfolio/2.jpg" alt="" data-at2x="../assets/img/portfolio/2.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Sit amet logo</p>
@@ -280,7 +280,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box branding">
-                        <img src="assets/img/portfolio/3.jpg" alt="" data-at2x="assets/img/portfolio/3.jpg">
+                        <img src="../assets/img/portfolio/3.jpg" alt="" data-at2x="../assets/img/portfolio/3.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Aeria app page</p>
@@ -288,7 +288,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box development">
-                        <img src="assets/img/portfolio/4.jpg" alt="" data-at2x="assets/img/portfolio/4.jpg">
+                        <img src="../assets/img/portfolio/4.jpg" alt="" data-at2x="../assets/img/portfolio/4.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Etiam processus dynamicus</p>
@@ -296,7 +296,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box design">
-                        <img src="assets/img/portfolio/5.jpg" alt="" data-at2x="assets/img/portfolio/5.jpg">
+                        <img src="../assets/img/portfolio/5.jpg" alt="" data-at2x="../assets/img/portfolio/5.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>March notare site</p>
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box development">
-                        <img src="assets/img/portfolio/6.jpg" alt="" data-at2x="assets/img/portfolio/6.jpg">
+                        <img src="../assets/img/portfolio/6.jpg" alt="" data-at2x="../assets/img/portfolio/6.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Mirum est notare</p>
@@ -312,7 +312,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box design">
-                        <img src="assets/img/portfolio/7.jpg" alt="" data-at2x="assets/img/portfolio/7.jpg">
+                        <img src="../assets/img/portfolio/7.jpg" alt="" data-at2x="../assets/img/portfolio/7.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Celic template</p>
@@ -320,7 +320,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box development">
-                        <img src="assets/img/portfolio/8.jpg" alt="" data-at2x="assets/img/portfolio/8.jpg">
+                        <img src="../assets/img/portfolio/8.jpg" alt="" data-at2x="../assets/img/portfolio/8.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Sit amet logo</p>
@@ -328,7 +328,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box branding">
-                        <img src="assets/img/portfolio/9.jpg" alt="" data-at2x="assets/img/portfolio/9.jpg">
+                        <img src="../assets/img/portfolio/9.jpg" alt="" data-at2x="../assets/img/portfolio/9.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Jalia business</p>
@@ -336,7 +336,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box design">
-                        <img src="assets/img/portfolio/10.jpg" alt="" data-at2x="assets/img/portfolio/10.jpg">
+                        <img src="../assets/img/portfolio/10.jpg" alt="" data-at2x="../assets/img/portfolio/10.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Mirum est notare</p>
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box development">
-                        <img src="assets/img/portfolio/11.jpg" alt="" data-at2x="assets/img/portfolio/11.jpg">
+                        <img src="../assets/img/portfolio/11.jpg" alt="" data-at2x="../assets/img/portfolio/11.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Etiam processus social</p>
@@ -352,7 +352,7 @@
                         </div>
                     </div>
                     <div class="portfolio-box branding">
-                        <img src="assets/img/portfolio/12.jpg" alt="" data-at2x="assets/img/portfolio/12.jpg">
+                        <img src="../assets/img/portfolio/12.jpg" alt="" data-at2x="../assets/img/portfolio/12.jpg">
                         <div class="portfolio-box-text-container">
                             <div class="portfolio-box-text">
                                 <p>Sit website logo</p>
@@ -512,7 +512,7 @@
                             <a href="">John Doe, johndoe.com</a>
                         </p>
                         <div class="testimonial-single-image">
-                            <img src="assets/img/testimonials/1.jpg" alt="" data-at2x="assets/img/testimonials/1.jpg">
+                            <img src="../assets/img/testimonials/1.jpg" alt="" data-at2x="../assets/img/testimonials/1.jpg">
                         </div>
                     </div>
                     <div class="testimonial-single">
@@ -522,7 +522,7 @@
                             <a href="">Jane Jonsson, blog.jane.com</a>
                         </p>
                         <div class="testimonial-single-image">
-                            <img src="assets/img/testimonials/2.jpg" alt="" data-at2x="assets/img/testimonials/2.jpg">
+                            <img src="../assets/img/testimonials/2.jpg" alt="" data-at2x="../assets/img/testimonials/2.jpg">
                         </div>
                     </div>
                     <div class="testimonial-single">
@@ -532,7 +532,7 @@
                             <a href="">John Doe, johndoe.com</a>
                         </p>
                         <div class="testimonial-single-image">
-                            <img src="assets/img/testimonials/3.jpg" alt="" data-at2x="assets/img/testimonials/3.jpg">
+                            <img src="../assets/img/testimonials/3.jpg" alt="" data-at2x="../assets/img/testimonials/3.jpg">
                         </div>
                     </div>
                     <div class="testimonial-single">
@@ -542,7 +542,7 @@
                             <a href="">Jane Jonsson, blog.jane.com</a>
                         </p>
                         <div class="testimonial-single-image">
-                            <img src="assets/img/testimonials/4.jpg" alt="" data-at2x="assets/img/testimonials/4.jpg">
+                            <img src="../assets/img/testimonials/4.jpg" alt="" data-at2x="../assets/img/testimonials/4.jpg">
                         </div>
                     </div>
                 </div>
@@ -594,7 +594,7 @@
             <div class="row">
                 <div class="col-sm-4 block-2-box block-2-left block-2-media wow fadeInLeft">
                     <div class="block-2-img-container">
-                        <img src="assets/img/about/1.jpg" alt="" data-at2x="assets/img/about/1.jpg">
+                        <img src="../assets/img/about/1.jpg" alt="" data-at2x="../assets/img/about/1.jpg">
                         <div class="img-container-line line-1"></div>
                         <div class="img-container-line line-2"></div>
                         <div class="img-container-line line-3"></div>
@@ -642,7 +642,7 @@
                 </div>
                 <div class="col-sm-4 block-2-box block-2-right block-2-media wow fadeInUp">
                     <div class="block-2-img-container">
-                        <img src="assets/img/about/2.jpg" alt="" data-at2x="assets/img/about/2.jpg">
+                        <img src="../assets/img/about/2.jpg" alt="" data-at2x="../assets/img/about/2.jpg">
                         <div class="img-container-line line-1"></div>
                         <div class="img-container-line line-2"></div>
                         <div class="img-container-line line-3"></div>
@@ -658,7 +658,7 @@
             <div class="row">
                 <div class="col-sm-4 block-2-box block-2-left block-2-media wow fadeInLeft">
                     <div class="block-2-img-container">
-                        <img src="assets/img/about/3.jpg" alt="" data-at2x="assets/img/about/3.jpg">
+                        <img src="../assets/img/about/3.jpg" alt="" data-at2x="assets/img/about/3.jpg">
                         <div class="img-container-line line-1"></div>
                         <div class="img-container-line line-2"></div>
                         <div class="img-container-line line-3"></div>
@@ -719,7 +719,7 @@
                     <p><span aria-hidden="true" class="icon_pin"></span>590 CMT8 Phuong 10, Quan 3, Tp Ho Chi Minh</p>
                     <p><span aria-hidden="true" class="icon_phone"></span>Phone: 0123 456 789</p>
                     <p><span aria-hidden="true" class="icon_mail"></span>Email: <a href="">fptaptech@edu.com.vn</a></p>
-                    <a href=""><img src="assets/img/google-play.png" alt=""></a>
+                    <a href=""><img src="../assets/img/google-play.png" alt=""></a>
                 </div>
             </div>
             <!-- <div class="contact-icon-container">
@@ -755,16 +755,16 @@
 
 
     <!-- Javascript -->
-    <script src="assets/js/jquery-1.11.1.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.backstretch.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/retina-1.1.0.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.countTo.js"></script>
-    <script src="assets/js/masonry.pkgd.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <script src="../assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.backstretch.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/retina-1.1.0.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/waypoints.min.js"></script>
+    <script src="../assets/js/jquery.countTo.js"></script>
+    <script src="../assets/js/masonry.pkgd.min.js"></script>
+    <script src="../assets/js/scripts.js"></script>
 
     <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>

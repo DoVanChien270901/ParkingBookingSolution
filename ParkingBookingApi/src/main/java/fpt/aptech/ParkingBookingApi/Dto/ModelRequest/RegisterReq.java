@@ -4,23 +4,21 @@
  */
 package fpt.aptech.ParkingBookingApi.Dto.ModelRequest;
 
-import java.util.*;
+import java.time.LocalDate;
 
 /**
  *
  * @author CHIEN
  */
 public class RegisterReq {
+
     private String username;
     private String password;
-    private String role;
     private Integer identitycard;
     private String fullname;
-    private Date dob;
-    private Double balance;
+    private LocalDate dob;
     private String email;
     private Integer phone;
-    
 
     public RegisterReq() {
     }
@@ -49,16 +47,6 @@ public class RegisterReq {
         this.identitycard = identitycard;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-   
-
     public String getFullname() {
         return fullname;
     }
@@ -67,20 +55,12 @@ public class RegisterReq {
         this.fullname = fullname;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
     }
 
     public String getEmail() {
@@ -98,5 +78,5 @@ public class RegisterReq {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
-    
+
 }

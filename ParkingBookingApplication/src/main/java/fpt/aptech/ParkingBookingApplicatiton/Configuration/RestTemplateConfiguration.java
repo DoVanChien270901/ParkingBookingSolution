@@ -54,7 +54,7 @@ public class RestTemplateConfiguration {
         return new HttpEntity(ob, headers);
     }
 
-    public ResponseEntity<?> getResponse(String uri, HttpMethod method, HttpEntity request, Class t) {
+    public ResponseEntity<?> excuteRequest(String uri, HttpMethod method, HttpEntity request, Class t) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange(uri, method, request, t);
     }

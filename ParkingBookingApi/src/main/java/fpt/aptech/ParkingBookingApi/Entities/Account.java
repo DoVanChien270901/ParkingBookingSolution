@@ -43,8 +43,8 @@ public class Account implements Serializable {
     @Column(name = "password")
     private String password;
     @Size(max = 20)
-    @Column(name = "role")
-    private String role;
+    @Column(name = "role", nullable = false)
+    private String role = "user";
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private Profile profile;
 
@@ -111,5 +111,5 @@ public class Account implements Serializable {
     public String toString() {
         return "fpt.aptech.ParkingBookingApi.Entities.Account[ username=" + username + " ]";
     }
-    
+
 }

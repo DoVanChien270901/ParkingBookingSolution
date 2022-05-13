@@ -9,12 +9,13 @@ package fpt.aptech.ParkingBookingApplicatiton.ModelResponse;
  * @author CHIEN
  */
 public class LoginRes {
+
     private String token;
     private Roles role;
 
     public LoginRes() {
     }
-    
+
     public String getToken() {
         return token;
     }
@@ -30,7 +31,4 @@ public class LoginRes {
     public void setRole(Roles role) {
         this.role = role;
     }
-    
-    
-    
 }

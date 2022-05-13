@@ -6,23 +6,30 @@ package fpt.aptech.ParkingBookingApplicatiton.Controller;
 
 import fpt.aptech.ParkingBookingApplicatiton.ModelResponse.LoginRes;
 import fpt.aptech.ParkingBookingApplicatiton.ModelRequest.RegisterReq;
-import fpt.aptech.ParkingBookingApplicatiton.ModelRequest.AuthenticationRequest;
+import fpt.aptech.ParkingBookingApplicatiton.ModelRequest.AuthenticateReq;
 import fpt.aptech.ParkingBookingApplicatiton.Configuration.RestTemplateConfiguration;
+import fpt.aptech.ParkingBookingApplicatiton.ModelResponse.Roles;
+import java.time.LocalDate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.*;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 /**
  *
  * @author CHIEN
  */
 @Controller
+@RequestMapping("account")
 public class AccountController {
 
     private final String uri = "http://localhost:8080/";
@@ -34,56 +41,66 @@ public class AccountController {
 //    private HttpSession session;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-    //  model.addAttribute("authenticate", new AuthenticationRequest());
-        return "user/login";
+    public String login(@ModelAttribute("authenticate") AuthenticateReq authenticate) {
+        return "layouts/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestBody AuthenticationRequest authenticationRequest, HttpSession session) {
-        HttpEntity request = restTemplate.setRequest(authenticationRequest);
-        ResponseEntity<?> response = restTemplate.getResponse(uri + "authenticate", HttpMethod.POST, request, LoginRes.class);
-        try {
-            LoginRes loginRes = (LoginRes) response.getBody();
-            session.setAttribute("token", loginRes.getToken());
-            switch (loginRes.getRole()) {
-                case user:
-                    return "homeuse";
-                case admin:
-                    return "homeadmin";
-                case handle:
-                    return "homehandle";
+    public String login(@Valid @ModelAttribute("authenticate") AuthenticateReq authenticateReq,
+            BindingResult bindingResult, HttpSession session) {
+        if (bindingResult.hasErrors() == false) {
+            try {
+                HttpEntity request = restTemplate.setRequest(authenticateReq);
+                ResponseEntity<?> response = restTemplate.excuteRequest(uri + "authenticate", HttpMethod.POST, request, LoginRes.class);
+                if (response.getStatusCode() == HttpStatus.OK) {
+                    LoginRes loginRes = (LoginRes) response.getBody();
+                    session.setAttribute("token", loginRes.getToken());
+                    switch (loginRes.getRole()) {
+                        case user:
+                            return "redirect:/home/user";
+                        case admin:
+                            return "redirect:/home/admin";
+                        case handle:
+                            return "redirect:/home/handler";
+                        default:
+                            return "redirect:/login";
+                    }
+                } else {
+                    return "redirect:/login";
+                }
+            } catch (Exception e) {
+                return "redirect:/login";
             }
-        } catch (Exception e) {
-            return "redirect:/login";
+        } else {
+            return "layouts/login";
         }
-        return "error page";
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(Model model) {
-        model.addAttribute("register", new RegisterReq());
-        return "user/register";
+    public String register(@ModelAttribute("registerReq") RegisterReq registerReq) {
+        return "layouts/register";
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("resigter") RegisterReq registerReq, HttpSession session) {
-        HttpEntity request = restTemplate.setRequest(registerReq);
-        ResponseEntity<?> response = restTemplate.getResponse(uri + "register", HttpMethod.POST, request, LoginRes.class);
-        try {
-            LoginRes loginRes = (LoginRes) response.getBody();
-            session.setAttribute("token", loginRes.getToken());
-            switch (loginRes.getRole()) {
-                case user:
-                    return "homeuse";
-                case admin:
-                    return "homeadmin";
-                case handle:
-                    return "homehandle";
+    public String register(@Valid @ModelAttribute("registerReq") RegisterReq registerReq, BindingResult bindingResult, HttpSession session, @RequestParam("dateofbirth") @DateTimeFormat(pattern = "dd.MM.yyyy") Date date) {
+        if (bindingResult.hasErrors() == false) {
+            HttpEntity request = restTemplate.setRequest(registerReq);
+            ResponseEntity<?> response = restTemplate.excuteRequest(uri + "register", HttpMethod.POST, request, LoginRes.class);
+            try {
+                if (response.getStatusCode() == HttpStatus.OK) {
+                    LoginRes loginRes = (LoginRes) response.getBody();
+                    session.setAttribute("token", loginRes.getToken());
+                    return "user/index";
+                } else {
+                    return "redirect:/register";
+                }
+            } catch (Exception e) {
+                return "redirect:/register";
             }
-        } catch (Exception e) {
-            return "redirect:/register";
+        } else {
+            return "layouts/register";
         }
-        return "error page";
-    }    
+    }
 //    @RequestMapping(value = "/user", method = RequestMethod.GET)
 //    public String getUser(Model model, HttpSession session) {
 //        String token = session.getAttribute("token").toString();

@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.*;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-public class ParkingBookingApplicatitonApplication {
+@SpringBootApplication
+public class ParkingBookingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ParkingBookingApplicatitonApplication.class, args);
+        SpringApplication.run(ParkingBookingApplication.class, args);
     }
 
     @Bean

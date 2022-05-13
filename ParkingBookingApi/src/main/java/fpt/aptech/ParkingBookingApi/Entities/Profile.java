@@ -5,8 +5,8 @@
 package fpt.aptech.ParkingBookingApi.Entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,12 +18,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 /**
  *
@@ -58,11 +57,10 @@ public class Profile implements Serializable {
     @Column(name = "identitycard")
     private int identitycard;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "balance")
-    private Double balance;
+    @Column(name = "balance", nullable = false)
+    private Double balance = 0.0;
     @Column(name = "dob")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
+    private LocalDate dob;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
     @Column(name = "email")
@@ -85,7 +83,7 @@ public class Profile implements Serializable {
 
     public Profile() {
     }
-    
+
     public Profile(String username) {
         this.username = username;
     }
@@ -127,11 +125,11 @@ public class Profile implements Serializable {
         this.balance = balance;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -228,5 +226,5 @@ public class Profile implements Serializable {
     public String toString() {
         return "fpt.aptech.ParkingBookingApi.Entities.Profile[ username=" + username + " ]";
     }
-    
+
 }

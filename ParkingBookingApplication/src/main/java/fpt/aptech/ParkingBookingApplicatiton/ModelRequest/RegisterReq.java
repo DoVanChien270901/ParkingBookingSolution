@@ -4,23 +4,35 @@
  */
 package fpt.aptech.ParkingBookingApplicatiton.ModelRequest;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.*;
 
 /**
  *
  * @author CHIEN
  */
 public class RegisterReq {
+
+    @Size(min = 6, max = 25, message = "Username must be between 6 and 25 characters")
     private String username;
+    @Size(min = 6, max = 12, message = "Password must be between 6 and 12 characters")
     private String password;
-    private String role;
+    //@Size(min = 8, max = 12, message = "Identitycard must be between 8 and 12 characters")
+    @NotNull(message = "Phone is required")
     private Integer identitycard;
+    @NotEmpty(message = "full name is required")
     private String fullname;
-    private Date dob;
-    private Double balance;
+    //@NotBlank(message = "Day of birth is required")
+    private LocalDate dob;
+    @Email(message = "Email is not math")
     private String email;
+    @NotNull(message = "Phone is required")
     private Integer phone;
-    
+    private String confirmpassword;
+    @AssertTrue(message = "Passwords should match")
+    public boolean equaPassword;
 
     public RegisterReq() {
     }
@@ -30,7 +42,7 @@ public class RegisterReq {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.trim();
     }
 
     public String getPassword() {
@@ -49,16 +61,6 @@ public class RegisterReq {
         this.identitycard = identitycard;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-   
-
     public String getFullname() {
         return fullname;
     }
@@ -67,20 +69,20 @@ public class RegisterReq {
         this.fullname = fullname;
     }
 
-    public Date getDob() {
-        return dob;
+    public LocalDate getDob() {
+        try {
+            DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return LocalDate.parse(dob.toString(), dateformatter);
+
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setDob(String dob) {
+        DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.dob = LocalDate.parse(dob, dateformatter);
     }
 
     public String getEmail() {
@@ -98,5 +100,21 @@ public class RegisterReq {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
-    
+
+    public String getConfirmpassword() {
+        return confirmpassword;
+    }
+
+    public void setConfirmpassword(String confirmpassword) {
+        this.confirmpassword = confirmpassword;
+    }
+
+    public boolean isEquaPassword() {
+        return equaPassword;
+    }
+
+    public void setEquaPassword(boolean equaPassword) {
+        this.equaPassword = password.equals(confirmpassword);
+    }
+
 }
