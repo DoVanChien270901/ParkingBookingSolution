@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -20,20 +21,21 @@ public class RegisterReq {
     @Size(min = 6, max = 12, message = "Password must be between 6 and 12 characters")
     private String password;
     //@Size(min = 8, max = 12, message = "Identitycard must be between 8 and 12 characters")
-    @NotNull(message = "Phone is required")
+    @NotNull(message = "Identity Card is required")
     private Integer identitycard;
     @NotEmpty(message = "full name is required")
     private String fullname;
     //@NotBlank(message = "Day of birth is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "Date of birth is required")
     private LocalDate dob;
     @Email(message = "Email is not math")
+    @NotEmpty(message = "Email is not empty")
     private String email;
     @NotNull(message = "Phone is required")
     private Integer phone;
     private String confirmpassword;
-    @AssertTrue(message = "Passwords should match")
-    public boolean equaPassword;
-
+    
     public RegisterReq() {
     }
 
@@ -70,19 +72,11 @@ public class RegisterReq {
     }
 
     public LocalDate getDob() {
-        try {
-            DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            return LocalDate.parse(dob.toString(), dateformatter);
-
-        } catch (Exception e) {
-            return null;
-        }
-
+        return dob;
     }
 
-    public void setDob(String dob) {
-        DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.dob = LocalDate.parse(dob, dateformatter);
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 
     public String getEmail() {
@@ -108,13 +102,8 @@ public class RegisterReq {
     public void setConfirmpassword(String confirmpassword) {
         this.confirmpassword = confirmpassword;
     }
-
+    @AssertTrue(message = "Passwords should match")
     public boolean isEquaPassword() {
-        return equaPassword;
+        return (password == null) ? false : confirmpassword.equals(password);
     }
-
-    public void setEquaPassword(boolean equaPassword) {
-        this.equaPassword = password.equals(confirmpassword);
-    }
-
 }

@@ -82,7 +82,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("registerReq") RegisterReq registerReq, BindingResult bindingResult, HttpSession session, @RequestParam("dateofbirth") @DateTimeFormat(pattern = "dd.MM.yyyy") Date date) {
+    public String register(@Valid @ModelAttribute("registerReq") RegisterReq registerReq, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors() == false) {
             HttpEntity request = restTemplate.setRequest(registerReq);
             ResponseEntity<?> response = restTemplate.excuteRequest(uri + "register", HttpMethod.POST, request, LoginRes.class);

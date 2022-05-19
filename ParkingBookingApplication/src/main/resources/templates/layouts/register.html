@@ -58,7 +58,7 @@
                                             <div class="form-group row">
                                                 <label  class="col-sm-4 col-form-label">Email Address*</label>
                                                 <div class="col-sm-8">
-                                                    <input th:field="*{email}" type="email" class="form-control">
+                                                    <input th:field="*{email}" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></label>
@@ -112,20 +112,21 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Date of Birth</label>
                                                 <div class="col-sm-8">
-                                                    <input name="dateofbirth" type="date" class="form-control">
+                                                    <input th:field="*{dob}" type="date" class="form-control">
                                                 </div>
                                             </div>
-<!--                                            <label th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="alert alert-danger"></label>-->
+                                            <label th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="alert alert-danger"></label>
                                             <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Identity Card</label>
                                                 <div class="col-sm-8">
-                                                    <input type="int" th:field="*{identitycard}" class="form-control">
+                                                    <input type="number" th:field="*{identitycard}" class="form-control">
                                                 </div>
                                             </div>
+                                            <label th:if="${#fields.hasErrors('identitycard')}" th:errors="*{identitycard}" class="alert alert-danger"></label>
                                             <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Phone</label>
                                                 <div class="col-sm-8">
-                                                    <input th:field="*{phone}" type="text" class="form-control">
+                                                    <input th:field="*{phone}" type="number" class="form-control">
                                                 </div>
                                             </div>
                                             <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="alert alert-danger"></label>
