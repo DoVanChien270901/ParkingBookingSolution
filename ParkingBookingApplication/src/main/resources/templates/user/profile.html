@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layouts/user-layout">
 
     <head>
         <meta charset="utf-8">
@@ -7,18 +7,21 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link href="/img/icon.png" rel="icon">
+        <link href="../assets/img/icon.png" rel="icon">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-        <link href="/lib/animate/animate.min.css" rel="stylesheet">
-        <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/fix.css" rel="stylesheet">
+        <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="../assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/css/style.css" rel="stylesheet">
+        <link href="../assets/css/fix.css" rel="stylesheet">
     </head>
 
     <body>
@@ -61,8 +64,7 @@
                                     <input type="text" class="mb-4 form-control" placeholder="3315628917" disabled>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                                    <br>
-                                    <img class="qrcode mb-3" src="img/qrcode.png" alt="">
+                                    <img class="qrcode mb-3" src="../assets/img/qrcode.png" alt="">
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                                     <button type="button" class="btn btn-settings btn-primary mt-2 mb-2 me-2"><i class="fa fa-cogs"></i> Settings</button>
@@ -71,19 +73,57 @@
                         </div>
                         <div class="tab-pane container fade" id="recharge">
                             <div class="row g-4 mb-3 pb-3">
-                                <div class="pb-4 pt-4">
-                                    <h2>Your Recharge</h2>
+                                <div class="pb-1 pt-4">
+                                    <h2>Recharge History</h2>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                </div>
+                                <table class="table table-bordered table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bai Dau Xe Le Thi Rieng</td>
+                                            <td>590 CMT8, Phuong 10, Quan 3, Ho Chi Minh</td>
+                                            <td>19/6/2022</td>
+                                            <td><span class="badge badge-success">Done !</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bai Dau Xe Le Thi Rieng</td>
+                                            <td>590 CMT8, Phuong 10, Quan 3, Ho Chi Minh</td>
+                                            <td>15/6/2022</td>
+                                            <td><span class="badge badge-success">Done !</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bai Dau Xe Le Thi Rieng</td>
+                                            <td>590 CMT8, Phuong 10, Quan 3, Ho Chi Minh</td>
+                                            <td>12/6/2022</td>
+                                            <td><span class="badge badge-success">Done !</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bai Dau Xe Le Thi Rieng</td>
+                                            <td>590 CMT8, Phuong 10, Quan 3, Ho Chi Minh</td>
+                                            <td>8/6/2022</td>
+                                            <td><span class="badge badge-success">Done !</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bai Dau Xe Le Thi Rieng</td>
+                                            <td>590 CMT8, Phuong 10, Quan 3, Ho Chi Minh</td>
+                                            <td>1/6/2022</td>
+                                            <td><span class="badge badge-success">Done !</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="tab-pane container fade" id="booking">
                             <div class="row g-4 mb-3 pb-3">
                                 <div class="pb-1 pt-4">
-                                    <h2>History</h2>
+                                    <h2>Booking History</h2>
                                 </div>
                                 <table class="table table-bordered table-responsive-md">
                                     <thead>
@@ -136,15 +176,15 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/lib/wow/wow.min.js"></script>
-        <script src="/assets/lib/easing/easing.min.js"></script>
-        <script src="/assets/lib/waypoints/waypoints.min.js"></script>
-        <script src="/assets/lib/counterup/counterup.min.js"></script>
-        <script src="/assets/lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="/assets/lib/tempusdominus/js/moment.min.js"></script>
-        <script src="/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <script src="/assets/js/main.js"></script>
+        <script src="../assets/lib/wow/wow.min.js"></script>
+        <script src="../assets/lib/easing/easing.min.js"></script>
+        <script src="../assets/lib/waypoints/waypoints.min.js"></script>
+        <script src="../assets/lib/counterup/counterup.min.js"></script>
+        <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
+        <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 
 </html>

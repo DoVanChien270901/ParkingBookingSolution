@@ -33,9 +33,16 @@ public class AccountController {
 //    @Autowired
 //    private HttpSession session;
 
+    // Test Template Admin and User
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test(Model model) {
+        //  model.addAttribute("authenticate", new AuthenticationRequest());
+        return "admin/profile";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
-    //  model.addAttribute("authenticate", new AuthenticationRequest());
+        //  model.addAttribute("authenticate", new AuthenticationRequest());
         return "user/login";
     }
 
@@ -59,11 +66,13 @@ public class AccountController {
         }
         return "error page";
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
         model.addAttribute("register", new RegisterReq());
         return "user/register";
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute("resigter") RegisterReq registerReq, HttpSession session) {
         HttpEntity request = restTemplate.setRequest(registerReq);
@@ -83,7 +92,7 @@ public class AccountController {
             return "redirect:/register";
         }
         return "error page";
-    }    
+    }
 //    @RequestMapping(value = "/user", method = RequestMethod.GET)
 //    public String getUser(Model model, HttpSession session) {
 //        String token = session.getAttribute("token").toString();
