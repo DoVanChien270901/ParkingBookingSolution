@@ -5,7 +5,7 @@
 
 .login-page .brand-logo img,
 .login-header .brand-logo img {
-    width: 80px;
+    width: 90px;
     padding: 6px;
 }
 
@@ -21,7 +21,7 @@
     font-size: 18px;
     padding: 3px;
     text-transform: uppercase;
-    color: #343a40;
+    color: #1b00ff;
     font-weight: 800;
 }
 
@@ -39,4 +39,31 @@
 .login-menu ul li a:hover {
     background-color: #1b00ff;
     color: #fff;
+}
+
+.modal-content .modal-body .text-center img {
+    width: 80px;
+}
+
+.tab-wizard2 {
+    display: relative;
+}
+
+.login-box {
+    max-width: 450px;
+}
+
+.register-page-wrap .login-box {
+    max-width: 800px;
+}
+
+.form-control:disabled,
+.form-control:read-only {
+    background-color: #fff;
+}
+
+@media screen and (max-width:768px) {
+    .register-page-wrap .login-box {
+        max-width: 450px;
+    }
 }
