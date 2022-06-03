@@ -2,32 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fpt.aptech.ParkingBookingApi.Dto.ModelRequest;
+package fpt.aptech.ParkingBookingApi.dto.response;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
- * @author vantu
+ * @author CHIEN
  */
-public class EditProfileReq {
-    private String role;
+public class ProfileRes implements Serializable {
+
     private Integer identitycard;
     private String fullname;
     private Date dob;
     private Double balance;
     private String email;
     private Integer phone;
+    private String qrContent;
 
-    public EditProfileReq() {
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public ProfileRes() {
     }
 
     public Integer getIdentitycard() {
@@ -77,4 +71,13 @@ public class EditProfileReq {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
+
+    public String getQrContent() {
+        return qrContent;
+    }
+
+    public void setQrContent(String qrContent) {
+        this.qrContent = qrContent;
+    }
+    
 }

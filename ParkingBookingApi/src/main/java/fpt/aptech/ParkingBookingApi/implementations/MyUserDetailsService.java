@@ -1,9 +1,11 @@
-package fpt.aptech.ParkingBookingApi.ImplementationServices;
+package fpt.aptech.ParkingBookingApi.implementations;
 
-import fpt.aptech.ParkingBookingApi.InterfaceServices.IAccount;
-import fpt.aptech.ParkingBookingApi.Dto.ModelRequest.RegisterReq;
-import fpt.aptech.ParkingBookingApi.Entities.*;
-import fpt.aptech.ParkingBookingApi.Repositorys.*;
+import fpt.aptech.ParkingBookingApi.entities.Account;
+import fpt.aptech.ParkingBookingApi.repositorys.ProfileRepository;
+import fpt.aptech.ParkingBookingApi.repositorys.AccountRep;
+import fpt.aptech.ParkingBookingApi.interfaces.IAccount;
+import fpt.aptech.ParkingBookingApi.dto.request.RegisterReq;
+import fpt.aptech.ParkingBookingApi.utils.ModelMapperUtil;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,13 +22,15 @@ import org.springframework.stereotype.*;
 public class MyUserDetailsService implements UserDetailsService, IAccount {
 
     @Autowired
-    private AccountRep accountRepository;
+    private AccountRep _accountRepository;
     @Autowired
-    private ProfileRepository profileRepository;
+    private ProfileRepository _profileRepository;
+    @Autowired
+    private ModelMapperUtil _mapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account acc = accountRepository.getByUserName(username);
+        Account acc = _accountRepository.getByUserName(username);
         if (acc != null) {
             List<GrantedAuthority> authoritys = new ArrayList<>();
             authoritys.add(new SimpleGrantedAuthority(acc.getRole()));
@@ -34,13 +38,18 @@ public class MyUserDetailsService implements UserDetailsService, IAccount {
         }
         throw new UsernameNotFoundException(username);
     }
-    public boolean create(Account account){
-     Account acc = accountRepository.getByUserName(account.getUsername());
-            if (acc == null) {
-                account.setPassword(encryPassword(account.getPassword()));
-                accountRepository.save(account);
-                return true;
-            }else return false;
+
+    @Override
+    public boolean create(RegisterReq registerReq) {
+        Account account = _mapper.map(registerReq, Account.class);
+        Account acc = _accountRepository.getByUserName(account.getUsername());
+        if (acc == null) {
+            account.setPassword(encryPassword(account.getPassword()));
+            _accountRepository.save(account);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static String encryPassword(String pass) {
@@ -51,15 +60,17 @@ public class MyUserDetailsService implements UserDetailsService, IAccount {
 
     @Override
     public List<Account> getAccount() {
-        return accountRepository.findAll();
+        return _accountRepository.findAll();
     }
 
-        @Override
+    @Override
     public Account getAccountById(String id) {
-        Account a = accountRepository.getByUserName(id);
+        Account a = _accountRepository.getByUserName(id);
         return a;
     }
-    public List<Account> findAll(){
-    return accountRepository.findAll();
+
+    @Override
+    public List<Account> findAll() {
+        return _accountRepository.findAll();
     }
 }
